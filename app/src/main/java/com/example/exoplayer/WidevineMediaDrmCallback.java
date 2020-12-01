@@ -163,8 +163,8 @@ public final class WidevineMediaDrmCallback implements MediaDrmCallback {
     JSONObject customData = new JSONObject();
     customData.put("userId", "1-6849382");
     customData.put("sessionId", "exoplayer_sessionId_123456");
-    customData.put("merchantId", "d5321abd-6676-4bc1-a39e-6bb763029e54");
-    customData.put("appId", "3930f331-e337-42b7-9619-00a0c12c16cb");
+    customData.put("merchantId", "sctv");
+    customData.put("appId", "RedTV");
     String customHeader = Base64.encodeToString(customData.toString().getBytes(), Base64.NO_WRAP);
     return customHeader;
   }

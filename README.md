@@ -5,11 +5,11 @@
 - **Operating system:** ```Android 16+```
 - **Install Exoplayer 2**:
     - Add a dependency in the build.gradle file of your app module. The following will add a dependency to the full library:
-        ```
-            implementation 'com.google.android.exoplayer:exoplayer:2.11.7'
-            implementation 'com.google.android.exoplayer:exoplayer-core:2.11.7'
-            implementation 'com.google.android.exoplayer:exoplayer-dash:2.11.7'
-            implementation 'com.google.android.exoplayer:exoplayer-ui:2.11.7'
+        ```java
+            implementation 'com.google.android.exoplayer:exoplayer:2.9.6'
+            implementation 'com.google.android.exoplayer:exoplayer-core:2.9.6'
+            implementation 'com.google.android.exoplayer:exoplayer-dash:2.9.6'
+            implementation 'com.google.android.exoplayer:exoplayer-ui:2.9.6'
         ```
         - exoplayer-core: Core functionality (required).
         - exoplayer-dash: Support for DASH content.

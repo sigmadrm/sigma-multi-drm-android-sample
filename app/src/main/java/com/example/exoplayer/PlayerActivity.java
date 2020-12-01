@@ -1,6 +1,7 @@
 package com.example.exoplayer;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.PlaybackPreparer;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -18,15 +20,23 @@ import com.google.android.exoplayer2.audio.AudioAttributes;
 import com.google.android.exoplayer2.drm.DefaultDrmSessionManager;
 import com.google.android.exoplayer2.drm.DrmSessionManager;
 import com.google.android.exoplayer2.drm.ExoMediaCrypto;
+import com.google.android.exoplayer2.drm.FrameworkMediaCrypto;
 import com.google.android.exoplayer2.drm.FrameworkMediaDrm;
+import com.google.android.exoplayer2.drm.HttpMediaDrmCallback;
 import com.google.android.exoplayer2.drm.MediaDrmCallback;
+import com.google.android.exoplayer2.drm.UnsupportedDrmException;
 import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer;
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil;
+import com.google.android.exoplayer2.offline.FilteringManifestParser;
+import com.google.android.exoplayer2.offline.StreamKey;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
+import com.google.android.exoplayer2.source.dash.manifest.DashManifestParser;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
+import com.google.android.exoplayer2.source.hls.playlist.DefaultHlsPlaylistParserFactory;
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
+import com.google.android.exoplayer2.source.smoothstreaming.manifest.SsManifestParser;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.ui.PlayerControlView;
@@ -36,6 +46,7 @@ import com.google.android.exoplayer2.upstream.HttpDataSource;
 import com.google.android.exoplayer2.util.ErrorMessageProvider;
 import com.google.android.exoplayer2.util.Util;
 
+import java.util.Collections;
 import java.util.UUID;
 
 public class PlayerActivity extends AppCompatActivity implements PlaybackPreparer, PlayerControlView.VisibilityListener {
@@ -46,8 +57,8 @@ public class PlayerActivity extends AppCompatActivity implements PlaybackPrepare
     private MediaSource mediaSource;
     private DataSource.Factory dataSourceFactory;
 
-    private Uri uri = Uri.parse("http://123.30.235.196:5635/live_pro/vtv1.stream/manifest.mpd");
-    private String drmLicenseUrl = "https://license.sigmadrm.com/license/verify/widevine";
+    private Uri uri = Uri.parse("http://123.30.235.196:5535/live_multi/vtv1_720.stream/manifest.mpd");
+    private String drmLicenseUrl = "https://license-staging.sigmadrm.com/license/verify/widevine";
     private UUID drmScheme = Util.getDrmUuid("widevine");
 
     private int startWindow = 0;
@@ -146,19 +157,26 @@ public class PlayerActivity extends AppCompatActivity implements PlaybackPrepare
 
     private void initializePlayer() {
         if (player == null) {
-            mediaSource = createLeafMediaSource();
+            mediaSource = buildMediaSource(uri);
 
             if (mediaSource == null) {
                 return;
             }
-            DefaultTrackSelector trackSelector = new DefaultTrackSelector(getApplicationContext(), new AdaptiveTrackSelection.Factory());
+            DefaultTrackSelector trackSelector = new DefaultTrackSelector();
+            DefaultDrmSessionManager<FrameworkMediaCrypto> drmSessionManager = null;
+
+            try {
+                drmSessionManager =
+                        buildDrmSessionManagerV18(
+                                C.WIDEVINE_UUID, drmLicenseUrl, null, false);
+            }
+            catch (Exception ex) {
+                showToast(R.string.error_drm_unknown);
+            }
 
             RenderersFactory renderersFactory =
                     ((ExoplayerApplication) getApplication()).buildRenderersFactory(false);
-            player =
-                    new SimpleExoPlayer.Builder(/* context= */ this, renderersFactory)
-                            .setTrackSelector(trackSelector)
-                            .build();
+            player = ExoPlayerFactory.newSimpleInstance(getApplicationContext(), renderersFactory, trackSelector, drmSessionManager);
             player.setAudioAttributes(AudioAttributes.DEFAULT, /* handleAudioFocus= */ true);
             player.setPlayWhenReady(true);
             playerView.setPlayer(player);
@@ -172,50 +190,44 @@ public class PlayerActivity extends AppCompatActivity implements PlaybackPrepare
         player.prepare(mediaSource, !haveStartPosition, false);
     }
 
-    private MediaSource createLeafMediaSource() {
-        int errorStringId = R.string.error_drm_unknown;
-        DrmSessionManager<ExoMediaCrypto> drmSessionManager = null;
-
-        MediaDrmCallback mediaDrmCallback =
-                createMediaDrmCallback(drmLicenseUrl, null);
-        drmSessionManager =
-                new DefaultDrmSessionManager.Builder()
-                        .setUuidAndExoMediaDrmProvider(drmScheme, FrameworkMediaDrm.DEFAULT_PROVIDER)
-                        .setMultiSession(false)
-                        .build(mediaDrmCallback);
-
-
-        if (drmSessionManager == null) {
-            showToast(errorStringId);
-            finish();
-            return null;
-        }
-
-        return createLeafMediaSource(uri, "", drmSessionManager);
+    private DefaultDrmSessionManager<FrameworkMediaCrypto> buildDrmSessionManagerV18(
+            UUID uuid, String licenseUrl, String[] keyRequestPropertiesArray, boolean multiSession)
+            throws UnsupportedDrmException {
+        HttpDataSource.Factory licenseDataSourceFactory =
+                ((ExoplayerApplication) getApplication()).buildHttpDataSourceFactory();
+        MediaDrmCallback drmCallback = createMediaDrmCallback(licenseUrl, keyRequestPropertiesArray);
+        FrameworkMediaDrm mediaDrm = FrameworkMediaDrm.newInstance(uuid);
+        return new DefaultDrmSessionManager<>(uuid, mediaDrm, drmCallback, null, multiSession);
     }
 
-    private MediaSource createLeafMediaSource(
-            Uri uri, String extension, DrmSessionManager<?> drmSessionManager) {
-        @C.ContentType int type = Util.inferContentType(uri, extension);
+    private MediaSource buildMediaSource(Uri uri) {
+        return buildMediaSource(uri, null);
+    }
+
+    private MediaSource buildMediaSource(Uri uri, @Nullable String overrideExtension) {
+        @C.ContentType int type = Util.inferContentType(uri, overrideExtension);
         switch (type) {
             case C.TYPE_DASH:
                 return new DashMediaSource.Factory(dataSourceFactory)
-                        .setDrmSessionManager(drmSessionManager)
+                        .setManifestParser(
+                                new FilteringManifestParser<>(new DashManifestParser(), Collections.<StreamKey>emptyList()))
                         .createMediaSource(uri);
             case C.TYPE_SS:
                 return new SsMediaSource.Factory(dataSourceFactory)
-                        .setDrmSessionManager(drmSessionManager)
+                        .setManifestParser(
+                                new FilteringManifestParser<>(new SsManifestParser(), Collections.<StreamKey>emptyList()))
                         .createMediaSource(uri);
             case C.TYPE_HLS:
-                return new HlsMediaSource.Factory(dataSourceFactory)
-                        .setDrmSessionManager(drmSessionManager)
+                HlsMediaSource source = new HlsMediaSource.Factory(dataSourceFactory)
+                        .setPlaylistParserFactory(
+                                new DefaultHlsPlaylistParserFactory())
                         .createMediaSource(uri);
+                return source;
             case C.TYPE_OTHER:
-                return new ProgressiveMediaSource.Factory(dataSourceFactory)
-                        .setDrmSessionManager(drmSessionManager)
-                        .createMediaSource(uri);
-            default:
+                return new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(uri);
+            default: {
                 throw new IllegalStateException("Unsupported type: " + type);
+            }
         }
     }
 
@@ -251,7 +263,7 @@ public class PlayerActivity extends AppCompatActivity implements PlaybackPrepare
                     // Special case for decoder initialization failures.
                     MediaCodecRenderer.DecoderInitializationException decoderInitializationException =
                             (MediaCodecRenderer.DecoderInitializationException) cause;
-                    if (decoderInitializationException.codecInfo == null) {
+                    if (decoderInitializationException.decoderName == null) {
                         if (decoderInitializationException.getCause() instanceof MediaCodecUtil.DecoderQueryException) {
                             errorString = getString(R.string.error_querying_decoders);
                         } else if (decoderInitializationException.secureDecoderRequired) {
@@ -266,7 +278,7 @@ public class PlayerActivity extends AppCompatActivity implements PlaybackPrepare
                         errorString =
                                 getString(
                                         R.string.error_instantiating_decoder,
-                                        decoderInitializationException.codecInfo.name);
+                                        decoderInitializationException.decoderName);
                     }
                 }
             }
