@@ -1,41 +1,36 @@
 package com.example.exoplayer;
 
-import android.annotation.TargetApi;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
-
-import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.drm.ExoMediaDrm.KeyRequest;
-import com.google.android.exoplayer2.drm.ExoMediaDrm.ProvisionRequest;
-import com.google.android.exoplayer2.drm.MediaDrmCallback;
-import com.google.android.exoplayer2.upstream.DataSourceInputStream;
-import com.google.android.exoplayer2.upstream.DataSpec;
-import com.google.android.exoplayer2.upstream.HttpDataSource;
-import com.google.android.exoplayer2.upstream.HttpDataSource.InvalidResponseCodeException;
-import com.google.android.exoplayer2.util.Assertions;
-import com.google.android.exoplayer2.util.Util;
-
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import androidx.annotation.NonNull;
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.drm.ExoMediaDrm;
+import com.google.android.exoplayer2.drm.MediaDrmCallback;
+import com.google.android.exoplayer2.drm.MediaDrmCallbackException;
+import com.google.android.exoplayer2.upstream.DataSourceInputStream;
+import com.google.android.exoplayer2.upstream.DataSpec;
+import com.google.android.exoplayer2.upstream.HttpDataSource;
+import com.google.android.exoplayer2.util.Assertions;
+import com.google.android.exoplayer2.util.Util;
+
+import com.sigma.packer.RequestInfo;
+import com.sigma.packer.SigmaDrmPacker;
+
 /**
  * A {@link MediaDrmCallback} that makes requests using {@link HttpDataSource} instances.
  */
-@TargetApi(18)
 public final class WidevineMediaDrmCallback implements MediaDrmCallback {
-
   private final HttpDataSource.Factory dataSourceFactory;
   private final String defaultLicenseUrl;
   private final boolean forceDefaultLicenseUrl;
   private final Map<String, String> keyRequestProperties;
-
   /**
    * @param defaultLicenseUrl The default license URL. Used for key requests that do not specify
    *     their own license URL.
@@ -96,42 +91,47 @@ public final class WidevineMediaDrmCallback implements MediaDrmCallback {
     }
   }
 
+  @NonNull
   @Override
-  public byte[] executeProvisionRequest(UUID uuid, ProvisionRequest request) throws IOException {
+  public byte[] executeProvisionRequest(@NonNull UUID uuid, ExoMediaDrm.ProvisionRequest request) throws MediaDrmCallbackException {
     String url =
         request.getDefaultUrl() + "&signedRequest=" + Util.fromUtf8Bytes(request.getData());
     return executePost(dataSourceFactory, url, Util.EMPTY_BYTE_ARRAY, null);
   }
 
+  @NonNull
   @Override
-  public byte[] executeKeyRequest(UUID uuid, KeyRequest request) throws Exception {
-    String url = request.getLicenseServerUrl();
-    if (forceDefaultLicenseUrl || TextUtils.isEmpty(url)) {
-      url = defaultLicenseUrl;
-    }
-    Map<String, String> requestProperties = new HashMap<>();
-    // Add standard request properties for supported schemes.
-    String contentType = "application/octet-stream";
-    requestProperties.put("Content-Type", contentType);
-    JSONObject customData = new JSONObject();
-    requestProperties.put("custom-data", getCustomData());
-
-    // Add additional request properties.
-    synchronized (keyRequestProperties) {
-      requestProperties.putAll(keyRequestProperties);
-    }
-    byte[] bytes = executePost(dataSourceFactory, url, request.getData(), requestProperties);
+  public byte[] executeKeyRequest(@NonNull UUID uuid, @NonNull ExoMediaDrm.KeyRequest request) throws MediaDrmCallbackException {
     try {
+      String url = request.getLicenseServerUrl();
+      if (forceDefaultLicenseUrl || TextUtils.isEmpty(url)) {
+        url = defaultLicenseUrl;
+      }
+      Map<String, String> requestProperties = new HashMap<>();
+      // Add standard request properties for supported schemes.
+      String contentType = "application/octet-stream";
+      requestProperties.put("Content-Type", contentType);
+      JSONObject customData = new JSONObject();
+      requestProperties.put("custom-data", getCustomData(request));
+
+      // Add additional request properties.
+      synchronized (keyRequestProperties) {
+        requestProperties.putAll(keyRequestProperties);
+      }
+      String base64Encoded = Base64.encodeToString(request.getData(), Base64.NO_WRAP);
+      Log.e("Data base64Encoded", base64Encoded);
+      byte[] bytes = executePost(dataSourceFactory, url, request.getData(), requestProperties);
       JSONObject jsonObject = new JSONObject(new String(bytes));
-      return Base64.decode(jsonObject.getString("license"), Base64.DEFAULT);
-    } catch (JSONException e) {
-      Log.e("DRM Callback", "Error while parsing DRMtoday response: " + new String(bytes), e);
+      String licenseEncrypted = jsonObject.getString("license");
+//      String licenseInBase64 = SigmaDrmPacker.extractLicense(licenseEncrypted);
+      return Base64.decode(licenseEncrypted, Base64.DEFAULT);
+    } catch (Exception e) {
       throw new RuntimeException("Error while parsing response", e);
     }
   }
 
   private static byte[] executePost(HttpDataSource.Factory dataSourceFactory, String url,
-      byte[] data, Map<String, String> requestProperties) throws IOException {
+                                    byte[] data, Map<String, String> requestProperties) throws MediaDrmCallbackException {
     HttpDataSource dataSource = dataSourceFactory.createDataSource();
     if (requestProperties != null) {
       for (Map.Entry<String, String> requestProperty : requestProperties.entrySet()) {
@@ -152,20 +152,33 @@ public final class WidevineMediaDrmCallback implements MediaDrmCallback {
       DataSourceInputStream inputStream = new DataSourceInputStream(dataSource, dataSpec);
       try {
         return Util.toByteArray(inputStream);
-      } catch (InvalidResponseCodeException e) {
-        throw e;
+      } catch (Exception e) {
+        throw new MediaDrmCallbackException(
+            dataSpec,
+            Uri.parse(url),
+            dataSource.getResponseHeaders(),
+            inputStream.bytesRead(),
+            e);
       } finally {
         Util.closeQuietly(inputStream);
       }
     }
   }
-  private String getCustomData() throws Exception {
+
+  private String getCustomData(ExoMediaDrm.KeyRequest keyRequest) throws Exception {
     JSONObject customData = new JSONObject();
-    customData.put("userId", "1-6849382");
-    customData.put("sessionId", "exoplayer_sessionId_123456");
-    customData.put("merchantId", "d5321abd-6676-4bc1-a39e-6bb763029e54");
-    customData.put("appId", "3930f331-e337-42b7-9619-00a0c12c16cb");
+
+    customData.put("merchantId", "sctv");
+    customData.put("appId", "RedTV");
+    customData.put("userId", "exoplayer_userId_2.19.1");
+    customData.put("sessionId", "exoplayer_sessionId_2.19.1");
+
+    RequestInfo requestInfo = SigmaDrmPacker.requestInfo(keyRequest.getData());
+    customData.put("reqId", requestInfo.requestId);
+    customData.put("deviceInfo", requestInfo.deviceInfo);
+
     String customHeader = Base64.encodeToString(customData.toString().getBytes(), Base64.NO_WRAP);
+    Log.e("Custom Data: ", customHeader);
     return customHeader;
   }
 }

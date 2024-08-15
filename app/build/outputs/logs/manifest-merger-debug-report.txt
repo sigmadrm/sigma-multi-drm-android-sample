@@ -1,0 +1,248 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:2:1-35:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\ledin\.gradle\caches\transforms-3\e73740902e4621d19b6d901885a35b25\transformed\constraintlayout-2.0.4\AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.android.material:material:1.2.0] C:\Users\ledin\.gradle\caches\transforms-3\f64114cb1615cfc7e12ccb8bd6377dbf\transformed\material-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.sigma.packer:2.19.x:1.0.3] C:\Users\ledin\.gradle\caches\transforms-3\ba4bfaad57169c8370e635ac8e59f43f\transformed\jetified-2.19.x-1.0.3\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\ledin\.gradle\caches\transforms-3\af32f164e0f23f1c0cf78559339279ce\transformed\appcompat-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\348a0dcfd20d177addb3a861b3cfb476\transformed\jetified-exoplayer-2.19.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\f4fd74b11685920dfddc75bc1ccfeef1\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\ab0905e5747f5c8e14df9a401e27bde1\transformed\jetified-viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\0f95815fb3c1910f852e4909557c5b31\transformed\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\ledin\.gradle\caches\transforms-3\27bb8c2b1c3217dcd7524a8908cf4856\transformed\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\6b68e67ecd75e0704aa4bbeb673b3c8a\transformed\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\5fa9a25b7ee1917dde6f9f16cb4188ed\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\75b434809f03758924f3d0fe9c3b675d\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\ledin\.gradle\caches\transforms-3\3d01702abde441ec3929e9b93bdc6183\transformed\transition-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\7ab5498ae209f60570583be81c784acb\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\5f7966a01b94d94d71f6c2048e9227f3\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\e5cfb641232242a4f9aed69ca4f95c01\transformed\jetified-exoplayer-dash-2.19.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\1048a171ad14bde2085a0bd4d5f33966\transformed\jetified-exoplayer-hls-2.19.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-rtsp:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\1dafdbd0cd9665dded59aebe5f01e3f6\transformed\jetified-exoplayer-rtsp-2.19.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\1efb1b8c1e28806299116ccc28e9e72f\transformed\jetified-exoplayer-smoothstreaming-2.19.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\6506f80677d4c16bd413fee5837a4a1a\transformed\jetified-exoplayer-core-2.19.1\AndroidManifest.xml:17:1-26:12
+MERGED from [com.google.android.exoplayer:exoplayer-datasource:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\965fe206a2e0fe2d047a1d2c3c78e435\transformed\jetified-exoplayer-datasource-2.19.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-database:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\77cddc8104200a1903032d87f4597f1b\transformed\jetified-exoplayer-database-2.19.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\d6cba33d2ef7d110eaad773c842a89ed\transformed\jetified-exoplayer-extractor-2.19.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-decoder:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\557ab0f3297cab8836ee08cc4b5f8803\transformed\jetified-exoplayer-decoder-2.19.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-ui:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\b71acea2e66179f1d84983fc3ca05d84\transformed\jetified-exoplayer-ui-2.19.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-container:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\6a31431f8b0071792cf86416d5b89fda\transformed\jetified-exoplayer-container-2.19.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\d9b65a70309a750d822ae3247704781b\transformed\jetified-exoplayer-common-2.19.1\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\00870564aa449c53345c3c2fab4ccb1f\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\daaf11d48c03d59e8cf5b2b621f37a77\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\5dc22a7871086567a2ce47d07b245f16\transformed\jetified-activity-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.3.0] C:\Users\ledin\.gradle\caches\transforms-3\acdbc5a7386405e65d40f591a20a7158\transformed\recyclerview-1.3.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\ff2d0042b7216d980bf10f481863a51d\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.6.0] C:\Users\ledin\.gradle\caches\transforms-3\5b6b7703dfe8960725a75768d7029899\transformed\media-1.6.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\dbf8d233222e1d251101a4d3020da3df\transformed\jetified-customview-poolingcontainer-1.0.0\AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.core:core-ktx:1.5.0] C:\Users\ledin\.gradle\caches\transforms-3\c0fcb76d65ada330966a8f661dd9a761\transformed\jetified-core-ktx-1.5.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.core:core:1.8.0] C:\Users\ledin\.gradle\caches\transforms-3\b48fa995e411c97402ce10ec7831262e\transformed\core-1.8.0\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ledin\.gradle\caches\transforms-3\3d9131e982f201b1133323e22bea28f9\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\ledin\.gradle\caches\transforms-3\194c6e6b62b2ff459105f5d4181a0c83\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\fcae0fcdb773d10b96f33e19ee4c3280\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\3a74fa64aa5f447ec22dd2dc6c179443\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\ledin\.gradle\caches\transforms-3\b0715e3b13018a852bde1f94af577f63\transformed\lifecycle-runtime-2.3.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\ledin\.gradle\caches\transforms-3\1b87fb50a833b635a18afd5e7d1b43a5\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\ledin\.gradle\caches\transforms-3\f72b05b8df8ab2c6e1381153266db3f8\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\ledin\.gradle\caches\transforms-3\20b6e90fe14806d7badb3f3e8bfebf73\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\30033caeb59482c6e14dd40871cbe63e\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
+INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:2:1-35:12
+	package
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:4:5-36
+		INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+		INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:2:1-35:12
+		INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:2:1-35:12
+		INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:6:5-66
+	android:name
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:6:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:7:5-78
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\6506f80677d4c16bd413fee5837a4a1a\transformed\jetified-exoplayer-core-2.19.1\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\6506f80677d4c16bd413fee5837a4a1a\transformed\jetified-exoplayer-core-2.19.1\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\d9b65a70309a750d822ae3247704781b\transformed\jetified-exoplayer-common-2.19.1\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\d9b65a70309a750d822ae3247704781b\transformed\jetified-exoplayer-common-2.19.1\AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:7:22-76
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:8:5-79
+	android:name
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:8:22-77
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:9:5-80
+	android:name
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:9:22-78
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:10:5-76
+	android:name
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:10:22-74
+application
+ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:12:5-33:19
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\ledin\.gradle\caches\transforms-3\e73740902e4621d19b6d901885a35b25\transformed\constraintlayout-2.0.4\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\ledin\.gradle\caches\transforms-3\e73740902e4621d19b6d901885a35b25\transformed\constraintlayout-2.0.4\AndroidManifest.xml:9:5-20
+MERGED from [com.google.android.material:material:1.2.0] C:\Users\ledin\.gradle\caches\transforms-3\f64114cb1615cfc7e12ccb8bd6377dbf\transformed\material-1.2.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.2.0] C:\Users\ledin\.gradle\caches\transforms-3\f64114cb1615cfc7e12ccb8bd6377dbf\transformed\material-1.2.0\AndroidManifest.xml:22:5-20
+MERGED from [androidx.core:core:1.8.0] C:\Users\ledin\.gradle\caches\transforms-3\b48fa995e411c97402ce10ec7831262e\transformed\core-1.8.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.8.0] C:\Users\ledin\.gradle\caches\transforms-3\b48fa995e411c97402ce10ec7831262e\transformed\core-1.8.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ledin\.gradle\caches\transforms-3\3d9131e982f201b1133323e22bea28f9\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ledin\.gradle\caches\transforms-3\3d9131e982f201b1133323e22bea28f9\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.8.0] C:\Users\ledin\.gradle\caches\transforms-3\b48fa995e411c97402ce10ec7831262e\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:19:9-35
+	android:label
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:17:9-41
+	tools:ignore
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:14:9-39
+	android:roundIcon
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:18:9-54
+	android:icon
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:16:9-43
+	android:allowBackup
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:15:9-35
+	android:theme
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:20:9-40
+	android:usesCleartextTraffic
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:21:9-44
+	android:name
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:13:9-45
+activity#com.example.exoplayer.PlayerActivity
+ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:22:9-32:20
+	android:label
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:25:13-45
+	android:exported
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:24:13-36
+	android:theme
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:26:13-56
+	android:name
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:23:13-43
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:27:13-31:29
+action#android.intent.action.MAIN
+ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:28:17-69
+	android:name
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:28:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:30:17-77
+	android:name
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml:30:27-74
+uses-sdk
+INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\ledin\.gradle\caches\transforms-3\e73740902e4621d19b6d901885a35b25\transformed\constraintlayout-2.0.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\ledin\.gradle\caches\transforms-3\e73740902e4621d19b6d901885a35b25\transformed\constraintlayout-2.0.4\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.material:material:1.2.0] C:\Users\ledin\.gradle\caches\transforms-3\f64114cb1615cfc7e12ccb8bd6377dbf\transformed\material-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.2.0] C:\Users\ledin\.gradle\caches\transforms-3\f64114cb1615cfc7e12ccb8bd6377dbf\transformed\material-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.sigma.packer:2.19.x:1.0.3] C:\Users\ledin\.gradle\caches\transforms-3\ba4bfaad57169c8370e635ac8e59f43f\transformed\jetified-2.19.x-1.0.3\AndroidManifest.xml:5:5-44
+MERGED from [com.sigma.packer:2.19.x:1.0.3] C:\Users\ledin\.gradle\caches\transforms-3\ba4bfaad57169c8370e635ac8e59f43f\transformed\jetified-2.19.x-1.0.3\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\ledin\.gradle\caches\transforms-3\af32f164e0f23f1c0cf78559339279ce\transformed\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\ledin\.gradle\caches\transforms-3\af32f164e0f23f1c0cf78559339279ce\transformed\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\348a0dcfd20d177addb3a861b3cfb476\transformed\jetified-exoplayer-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\348a0dcfd20d177addb3a861b3cfb476\transformed\jetified-exoplayer-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\f4fd74b11685920dfddc75bc1ccfeef1\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\f4fd74b11685920dfddc75bc1ccfeef1\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\ab0905e5747f5c8e14df9a401e27bde1\transformed\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\ab0905e5747f5c8e14df9a401e27bde1\transformed\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\0f95815fb3c1910f852e4909557c5b31\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\0f95815fb3c1910f852e4909557c5b31\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\ledin\.gradle\caches\transforms-3\27bb8c2b1c3217dcd7524a8908cf4856\transformed\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\ledin\.gradle\caches\transforms-3\27bb8c2b1c3217dcd7524a8908cf4856\transformed\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\6b68e67ecd75e0704aa4bbeb673b3c8a\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\6b68e67ecd75e0704aa4bbeb673b3c8a\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\5fa9a25b7ee1917dde6f9f16cb4188ed\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\5fa9a25b7ee1917dde6f9f16cb4188ed\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\75b434809f03758924f3d0fe9c3b675d\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\75b434809f03758924f3d0fe9c3b675d\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\ledin\.gradle\caches\transforms-3\3d01702abde441ec3929e9b93bdc6183\transformed\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\ledin\.gradle\caches\transforms-3\3d01702abde441ec3929e9b93bdc6183\transformed\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\7ab5498ae209f60570583be81c784acb\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\7ab5498ae209f60570583be81c784acb\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\5f7966a01b94d94d71f6c2048e9227f3\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\5f7966a01b94d94d71f6c2048e9227f3\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\e5cfb641232242a4f9aed69ca4f95c01\transformed\jetified-exoplayer-dash-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\e5cfb641232242a4f9aed69ca4f95c01\transformed\jetified-exoplayer-dash-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\1048a171ad14bde2085a0bd4d5f33966\transformed\jetified-exoplayer-hls-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\1048a171ad14bde2085a0bd4d5f33966\transformed\jetified-exoplayer-hls-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-rtsp:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\1dafdbd0cd9665dded59aebe5f01e3f6\transformed\jetified-exoplayer-rtsp-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-rtsp:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\1dafdbd0cd9665dded59aebe5f01e3f6\transformed\jetified-exoplayer-rtsp-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\1efb1b8c1e28806299116ccc28e9e72f\transformed\jetified-exoplayer-smoothstreaming-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\1efb1b8c1e28806299116ccc28e9e72f\transformed\jetified-exoplayer-smoothstreaming-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\6506f80677d4c16bd413fee5837a4a1a\transformed\jetified-exoplayer-core-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\6506f80677d4c16bd413fee5837a4a1a\transformed\jetified-exoplayer-core-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-datasource:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\965fe206a2e0fe2d047a1d2c3c78e435\transformed\jetified-exoplayer-datasource-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-datasource:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\965fe206a2e0fe2d047a1d2c3c78e435\transformed\jetified-exoplayer-datasource-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-database:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\77cddc8104200a1903032d87f4597f1b\transformed\jetified-exoplayer-database-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-database:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\77cddc8104200a1903032d87f4597f1b\transformed\jetified-exoplayer-database-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\d6cba33d2ef7d110eaad773c842a89ed\transformed\jetified-exoplayer-extractor-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\d6cba33d2ef7d110eaad773c842a89ed\transformed\jetified-exoplayer-extractor-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-decoder:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\557ab0f3297cab8836ee08cc4b5f8803\transformed\jetified-exoplayer-decoder-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-decoder:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\557ab0f3297cab8836ee08cc4b5f8803\transformed\jetified-exoplayer-decoder-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-ui:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\b71acea2e66179f1d84983fc3ca05d84\transformed\jetified-exoplayer-ui-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-ui:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\b71acea2e66179f1d84983fc3ca05d84\transformed\jetified-exoplayer-ui-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-container:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\6a31431f8b0071792cf86416d5b89fda\transformed\jetified-exoplayer-container-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-container:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\6a31431f8b0071792cf86416d5b89fda\transformed\jetified-exoplayer-container-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\d9b65a70309a750d822ae3247704781b\transformed\jetified-exoplayer-common-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.19.1] C:\Users\ledin\.gradle\caches\transforms-3\d9b65a70309a750d822ae3247704781b\transformed\jetified-exoplayer-common-2.19.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\00870564aa449c53345c3c2fab4ccb1f\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\00870564aa449c53345c3c2fab4ccb1f\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\daaf11d48c03d59e8cf5b2b621f37a77\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\daaf11d48c03d59e8cf5b2b621f37a77\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\5dc22a7871086567a2ce47d07b245f16\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\5dc22a7871086567a2ce47d07b245f16\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.3.0] C:\Users\ledin\.gradle\caches\transforms-3\acdbc5a7386405e65d40f591a20a7158\transformed\recyclerview-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.3.0] C:\Users\ledin\.gradle\caches\transforms-3\acdbc5a7386405e65d40f591a20a7158\transformed\recyclerview-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\ff2d0042b7216d980bf10f481863a51d\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\ff2d0042b7216d980bf10f481863a51d\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.6.0] C:\Users\ledin\.gradle\caches\transforms-3\5b6b7703dfe8960725a75768d7029899\transformed\media-1.6.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.6.0] C:\Users\ledin\.gradle\caches\transforms-3\5b6b7703dfe8960725a75768d7029899\transformed\media-1.6.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\dbf8d233222e1d251101a4d3020da3df\transformed\jetified-customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\dbf8d233222e1d251101a4d3020da3df\transformed\jetified-customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core-ktx:1.5.0] C:\Users\ledin\.gradle\caches\transforms-3\c0fcb76d65ada330966a8f661dd9a761\transformed\jetified-core-ktx-1.5.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core-ktx:1.5.0] C:\Users\ledin\.gradle\caches\transforms-3\c0fcb76d65ada330966a8f661dd9a761\transformed\jetified-core-ktx-1.5.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core:1.8.0] C:\Users\ledin\.gradle\caches\transforms-3\b48fa995e411c97402ce10ec7831262e\transformed\core-1.8.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.8.0] C:\Users\ledin\.gradle\caches\transforms-3\b48fa995e411c97402ce10ec7831262e\transformed\core-1.8.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ledin\.gradle\caches\transforms-3\3d9131e982f201b1133323e22bea28f9\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ledin\.gradle\caches\transforms-3\3d9131e982f201b1133323e22bea28f9\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\ledin\.gradle\caches\transforms-3\194c6e6b62b2ff459105f5d4181a0c83\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\ledin\.gradle\caches\transforms-3\194c6e6b62b2ff459105f5d4181a0c83\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\fcae0fcdb773d10b96f33e19ee4c3280\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\fcae0fcdb773d10b96f33e19ee4c3280\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\3a74fa64aa5f447ec22dd2dc6c179443\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\ledin\.gradle\caches\transforms-3\3a74fa64aa5f447ec22dd2dc6c179443\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\ledin\.gradle\caches\transforms-3\b0715e3b13018a852bde1f94af577f63\transformed\lifecycle-runtime-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\ledin\.gradle\caches\transforms-3\b0715e3b13018a852bde1f94af577f63\transformed\lifecycle-runtime-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\ledin\.gradle\caches\transforms-3\1b87fb50a833b635a18afd5e7d1b43a5\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\ledin\.gradle\caches\transforms-3\1b87fb50a833b635a18afd5e7d1b43a5\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\ledin\.gradle\caches\transforms-3\f72b05b8df8ab2c6e1381153266db3f8\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\ledin\.gradle\caches\transforms-3\f72b05b8df8ab2c6e1381153266db3f8\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\ledin\.gradle\caches\transforms-3\20b6e90fe14806d7badb3f3e8bfebf73\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\ledin\.gradle\caches\transforms-3\20b6e90fe14806d7badb3f3e8bfebf73\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\30033caeb59482c6e14dd40871cbe63e\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\ledin\.gradle\caches\transforms-3\30033caeb59482c6e14dd40871cbe63e\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
+INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+		INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+		ADDED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml
+		INJECTED from D:\SOURCES\DRM\PLAYER\ANDROID\sigma-multi-drm-android-sample\app\src\main\AndroidManifest.xml

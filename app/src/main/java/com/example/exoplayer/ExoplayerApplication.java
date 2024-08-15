@@ -17,21 +17,22 @@ package com.example.exoplayer;
 
 import android.app.Application;
 
+import androidx.annotation.OptIn;
+
 import com.google.android.exoplayer2.DefaultRenderersFactory;
-import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.database.DatabaseProvider;
 import com.google.android.exoplayer2.database.ExoDatabaseProvider;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
-import com.google.android.exoplayer2.upstream.FileDataSource;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.upstream.HttpDataSource;
-import com.google.android.exoplayer2.upstream.cache.Cache;
 import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
-import com.google.android.exoplayer2.upstream.cache.CacheDataSourceFactory;
 import com.google.android.exoplayer2.upstream.cache.NoOpCacheEvictor;
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 import com.google.android.exoplayer2.util.Util;
+import com.google.android.exoplayer2.upstream.cache.Cache;
+import com.google.android.exoplayer2.DefaultRenderersFactory;
+import com.google.android.exoplayer2.RenderersFactory;
 
 import java.io.File;
 
@@ -48,7 +49,6 @@ public class ExoplayerApplication extends Application {
   private File downloadDirectory;
   private Cache downloadCache;
 
-  @Override
   public void onCreate() {
     super.onCreate();
     userAgent = Util.getUserAgent(this, "ExoplayerApplication");
@@ -63,12 +63,12 @@ public class ExoplayerApplication extends Application {
 
   /** Returns a {@link HttpDataSource.Factory}. */
   public HttpDataSource.Factory buildHttpDataSourceFactory() {
-    return new DefaultHttpDataSourceFactory(userAgent);
+    return (new DefaultHttpDataSource.Factory()).setUserAgent(userAgent);
   }
 
   /** Returns whether extension renderers should be used. */
   public boolean useExtensionRenderers() {
-    return "withExtensions".equals(BuildConfig.FLAVOR);
+    return false;//"withExtensions".equals(BuildConfig.FLAVOR);
   }
 
   public RenderersFactory buildRenderersFactory(boolean preferExtensionRenderer) {
@@ -76,8 +76,8 @@ public class ExoplayerApplication extends Application {
     int extensionRendererMode =
         useExtensionRenderers()
             ? (preferExtensionRenderer
-                ? DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER
-                : DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON)
+            ? DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER
+            : DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON)
             : DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF;
     return new DefaultRenderersFactory(/* context= */ this)
         .setExtensionRendererMode(extensionRendererMode);
@@ -109,14 +109,22 @@ public class ExoplayerApplication extends Application {
     return downloadDirectory;
   }
 
-  protected static CacheDataSourceFactory buildReadOnlyCacheDataSource(
-          DataSource.Factory upstreamFactory, Cache cache) {
-    return new CacheDataSourceFactory(
-        cache,
-        upstreamFactory,
-        new FileDataSource.Factory(),
-        /* cacheWriteDataSinkFactory= */ null,
-        CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR,
-        /* eventListener= */ null);
+  //  protected static CacheDataSourceFactory buildReadOnlyCacheDataSource(
+//          DataSource.Factory upstreamFactory, Cache cache) {
+//    return new CacheDataSourceFactory(
+//        cache,
+//        upstreamFactory,
+//        new FileDataSource.Factory(),
+//        /* cacheWriteDataSinkFactory= */ null,
+//        CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR,
+//        /* eventListener= */ null);
+//  }
+  private static CacheDataSource.Factory buildReadOnlyCacheDataSource(
+      DataSource.Factory upstreamFactory, Cache cache) {
+    return new CacheDataSource.Factory()
+        .setCache(cache)
+        .setUpstreamDataSourceFactory(upstreamFactory)
+        .setCacheWriteDataSinkFactory(null)
+        .setFlags(CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR);
   }
 }
