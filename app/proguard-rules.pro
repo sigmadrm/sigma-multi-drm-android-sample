@@ -20,3 +20,10 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -keep class org.spongycastle.** { *; }
+-keep class com.sigma.packer.RequestInfo { *; }
+-keep class com.sigma.packer.SigmaDrmPacker { *; }
+-keep class com.sigma.packer.SigmaMediaDrm { *; }
+
+-keepclasseswithmembers class com.sigma.packer.RequestInfo$* { *; }
+-keepclasseswithmembers class com.sigma.packer.SigmaDrmPacker$* { *; }
+-keepclasseswithmembers class com.sigma.packer.SigmaMediaDrm$* { *; }
