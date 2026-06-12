@@ -43,7 +43,7 @@ project.ext {
     androidxCollectionVersion = '1.2.0'
     androidxConstraintLayoutVersion = '2.1.4'
     // Updating this to 1.9.0+ will import Kotlin stdlib [internal ref: b/277891049].
-    androidxCoreVersion = '1.8.0'
+    androidxCoreVersion = '1.9.0'
     androidxFuturesVersion = '1.1.0'
     androidxMediaVersion = '1.6.0'
     androidxMedia2Version = '1.2.1'

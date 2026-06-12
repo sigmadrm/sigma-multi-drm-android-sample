@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,10 +16,13 @@ import android.text.method.ScrollingMovementMethod;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.drm.DefaultDrmSessionManager;
@@ -30,21 +34,23 @@ import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.upstream.DefaultLoadErrorHandlingPolicy;
-import com.google.android.exoplayer2.util.Util;
+import android.annotation.SuppressLint;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+@SuppressWarnings("deprecation")
 public class SigmaDemoActivity extends AppCompatActivity {
 
-    private PlayerView playerView;
-    private SimpleExoPlayer player;
+    @Nullable private PlayerView playerView;
+    @Nullable private SimpleExoPlayer player;
     private TextView textLogs, textTime;
     private EditText editManifestUri, editBaseUrl, editMerchantId, editAppId, editUserId, editSessionId;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-    private Handler handler = new Handler(Looper.getMainLooper());
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+    private final Handler handler = new Handler(Looper.getMainLooper());
     private boolean isNetworkLost = false;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private final ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback() {
         @Override
         public void onAvailable(Network network) {
@@ -85,12 +91,18 @@ public class SigmaDemoActivity extends AppCompatActivity {
         }
     };
 
+    @SuppressLint("InlinedApi")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sigma_demo);
 
-        registerReceiver(drmLogReceiver, new IntentFilter("SIGMA_DRM_LOG"));
+        //noinspection WrongConstant
+        ContextCompat.registerReceiver(
+                this,
+                drmLogReceiver,
+                new IntentFilter("SIGMA_DRM_LOG"),
+                ContextCompat.RECEIVER_NOT_EXPORTED);
 
         playerView = findViewById(R.id.player_view);
         textLogs = findViewById(R.id.text_logs);
@@ -118,39 +130,55 @@ public class SigmaDemoActivity extends AppCompatActivity {
         });
 
         initializePlayer();
-        registerNetworkCallback();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            registerNetworkCallback();
+        }
         log("App Ready (ExoPlayer 2.x). Input data and press START.");
     }
 
     private void initializePlayer() {
+        if (player != null) {
+            return;
+        }
         player = new SimpleExoPlayer.Builder(this).build();
-        playerView.setPlayer(player);
+        if (playerView != null) {
+            playerView.setPlayer(player);
+        }
         player.addListener(new Player.Listener() {
             @Override
             public void onIsPlayingChanged(boolean isPlaying) {
                 log(isPlaying ? ">>> EVENT: Play" : ">>> EVENT: Pause");
                 if (isPlaying) updateProgress();
             }
+
             @Override
             public void onPlaybackStateChanged(int state) {
-                if (state == Player.STATE_READY) { 
-                    log("Status: Playing (Ready)"); 
-                    updateProgress(); 
-                } else if (state == Player.STATE_BUFFERING) {
-                    log("Status: Buffering...");
-                } else if (state == Player.STATE_ENDED) {
-                    log(">>> EVENT: Video Ended. Stopping session.");
-                    player.stop();
-                    player.clearMediaItems();
+                switch (state) {
+                    case Player.STATE_READY:
+                        log("Status: Playing (Ready)");
+                        updateProgress();
+                        break;
+                    case Player.STATE_BUFFERING:
+                        log("Status: Buffering...");
+                        break;
+                    case Player.STATE_ENDED:
+                        log(">>> EVENT: Video Ended. Stopping session.");
+                        player.stop();
+                        player.clearMediaItems();
+                        break;
+                    default:
+                        break;
                 }
             }
+
             @Override
-            public void onPlayerError(ExoPlaybackException error) {
+            public void onPlayerError(PlaybackException error) {
                 log("[PLAYER] Fatal Error: " + error.getMessage());
             }
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void registerNetworkCallback() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm != null) {
@@ -169,8 +197,9 @@ public class SigmaDemoActivity extends AppCompatActivity {
         log("UI Reseted.");
     }
 
+    @SuppressLint("NewApi")
     private void startPlayback() {
-        if (player == null) initializePlayer();
+        initializePlayer();
 
         String manifestUri = editManifestUri.getText().toString().trim();
         String baseUrl = editBaseUrl.getText().toString().trim();
@@ -179,13 +208,15 @@ public class SigmaDemoActivity extends AppCompatActivity {
         String userId = editUserId.getText().toString().trim();
         String sessionId = editSessionId.getText().toString().trim();
 
-        String finalBaseUrl = baseUrl;
-        if (!finalBaseUrl.contains("/license/verify/widevine")) {
-            finalBaseUrl += finalBaseUrl.endsWith("/") ? "license/verify/widevine" : "/license/verify/widevine";
+        String licenseBaseUrl;
+        if (!baseUrl.contains("/license/verify/widevine")) {
+            licenseBaseUrl = baseUrl + (baseUrl.endsWith("/") ? "" : "/") + "license/verify/widevine";
+        } else {
+            licenseBaseUrl = baseUrl;
         }
-        String connector = finalBaseUrl.contains("?") ? "&" : "?";
+        String connector = licenseBaseUrl.contains("?") ? "&" : "?";
         String licenseUrl = String.format(Locale.US, "%s%smerchantId=%s&appId=%s&userId=%s&sessionId=%s",
-                finalBaseUrl, connector, android.net.Uri.encode(merchantId), android.net.Uri.encode(appId),
+                licenseBaseUrl, connector, android.net.Uri.encode(merchantId), android.net.Uri.encode(appId),
                 android.net.Uri.encode(userId), android.net.Uri.encode(sessionId));
 
         log(">>> STARTING: Requesting Manifest...");
@@ -213,13 +244,15 @@ public class SigmaDemoActivity extends AppCompatActivity {
 
         // Tạo MediaSource với DRM và Retry Policy
         MediaSource mediaSource = new DefaultMediaSourceFactory(new DefaultDataSourceFactory(this))
-                .setDrmSessionManager(drmManager)
+                .setDrmSessionManagerProvider(unusedMediaItem -> drmManager)
                 .setLoadErrorHandlingPolicy(retryPolicy)
                 .createMediaSource(MediaItem.fromUri(manifestUri));
 
-        player.setMediaSource(mediaSource);
-        player.prepare();
-        player.play();
+        if (player != null) {
+            player.setMediaSource(mediaSource);
+            player.prepare();
+            player.play();
+        }
     }
 
     private void updateProgress() {
@@ -247,8 +280,13 @@ public class SigmaDemoActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(drmLogReceiver);
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (cm != null) cm.unregisterNetworkCallback(networkCallback);
-        if (player != null) player.release();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (cm != null) cm.unregisterNetworkCallback(networkCallback);
+        }
+        if (player != null) {
+            player.release();
+            player = null;
+        }
     }
 }
