@@ -15,8 +15,12 @@
  */
 package com.google.android.exoplayer2.drm;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Base64;
 import androidx.annotation.Nullable;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.drm.ExoMediaDrm.KeyRequest;
@@ -34,6 +38,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * A {@link MediaDrmCallback} that makes requests using {@link DataSource} instances.
@@ -126,13 +132,26 @@ public final class HttpMediaDrmCallback implements MediaDrmCallback {
   @Override
   public byte[] executeProvisionRequest(UUID uuid, ProvisionRequest request)
       throws MediaDrmCallbackException {
-    String url =
-        request.getDefaultUrl() + "&signedRequest=" + Util.fromUtf8Bytes(request.getData());
-    return executePost(
-        dataSourceFactory,
-        url,
-        /* httpBody= */ null,
-        /* requestProperties= */ Collections.emptyMap());
+    String url = request.getDefaultUrl();
+    byte[] httpBody = request.getData();
+
+    if (C.WIDEVINE_UUID.equals(uuid)) {
+      if (TextUtils.isEmpty(url)) {
+        url = "https://www.gstatic.com/widevine/cert/provision";
+      } else {
+        url += (url.contains("?") ? "&" : "?") + "signed_request=" + Util.fromUtf8Bytes(httpBody);
+        httpBody = null;
+      }
+    }
+
+    sendBroadcastLog("[PROV] Requesting Provisioning... to: " + url);
+
+    Map<String, String> requestProperties = new HashMap<>();
+    if (httpBody != null) {
+      requestProperties.put("Content-Type", "application/octet-stream");
+    }
+
+    return executePost(dataSourceFactory, url, httpBody, requestProperties);
   }
 
   @Override
@@ -150,21 +169,71 @@ public final class HttpMediaDrmCallback implements MediaDrmCallback {
           /* cause= */ new IllegalStateException("No license URL"));
     }
     Map<String, String> requestProperties = new HashMap<>();
-    // Add standard request properties for supported schemes.
-    String contentType =
-        C.PLAYREADY_UUID.equals(uuid)
-            ? "text/xml"
-            : (C.CLEARKEY_UUID.equals(uuid) ? "application/json" : "application/octet-stream");
+    String contentType = C.PLAYREADY_UUID.equals(uuid) ? "text/xml" : (C.CLEARKEY_UUID.equals(uuid) ? "application/json" : "application/octet-stream");
     requestProperties.put("Content-Type", contentType);
     if (C.PLAYREADY_UUID.equals(uuid)) {
-      requestProperties.put(
-          "SOAPAction", "http://schemas.microsoft.com/DRM/2007/03/protocols/AcquireLicense");
+      requestProperties.put("SOAPAction", "http://schemas.microsoft.com/DRM/2007/03/protocols/AcquireLicense");
     }
-    // Add additional request properties.
     synchronized (keyRequestProperties) {
       requestProperties.putAll(keyRequestProperties);
     }
-    return executePost(dataSourceFactory, url, request.getData(), requestProperties);
+    
+    sendBroadcastLog("[NET] Requesting License...");
+
+    byte[] response;
+    try {
+        try {
+            response = executePost(dataSourceFactory, url, request.getData(), requestProperties);
+            sendBroadcastLog("[NET] Response 200 OK");
+        } catch (Exception e) {
+            sendBroadcastLog("[NET] Connection failed. Injecting Invalid Response to force DRM error...");
+            return "{\"status\":\"expired\",\"license\":\"invalid\"}".getBytes(UTF_8);
+        }
+    } catch (Exception e) {
+        String errorMsg;
+        if (e instanceof InvalidResponseCodeException) {
+            InvalidResponseCodeException httpError = (InvalidResponseCodeException) e;
+            errorMsg = "HTTP " + httpError.responseCode;
+            if (httpError.responseBody != null && httpError.responseBody.length > 0) {
+                try {
+                    String body = new String(httpError.responseBody, UTF_8).trim();
+                    if (body.length() < 100) errorMsg += ": " + body;
+                } catch (Exception ignored) {}
+            }
+        } else {
+            errorMsg = e.getMessage();
+            if (errorMsg != null && errorMsg.contains("No address associated with hostname")) {
+                errorMsg = "No Network Connection";
+            }
+        }
+        android.util.Log.e("DRM_DEBUG", "[ERR] Request Failed: " + errorMsg);
+        sendBroadcastLog("[ERR] Request Failed: " + errorMsg);
+        throw e;
+    }
+
+    if (response != null) {
+        String responseString = new String(response, UTF_8).trim();
+        if (responseString.startsWith("{")) {
+            try {
+                JSONObject jsonObject = new JSONObject(responseString);
+                if (jsonObject.has("license")) {
+                    String licenseBase64 = jsonObject.getString("license");
+                    byte[] decodedLicense = Base64.decode(licenseBase64, Base64.DEFAULT);
+                    sendBroadcastLog("[NET] Response 200 OK (JSON)");
+                    return decodedLicense;
+                } else {
+                    String msg = jsonObject.optString("message", "Unknown Error");
+                    sendBroadcastLog("[ERR] License missing: " + msg);
+                }
+            } catch (JSONException e) {
+                sendBroadcastLog("[ERR] JSON Parsing Error");
+            }
+        } else {
+            sendBroadcastLog("[NET] Response 200 OK");
+        }
+    }
+
+    return response;
   }
 
   private static byte[] executePost(
@@ -213,8 +282,6 @@ public final class HttpMediaDrmCallback implements MediaDrmCallback {
   @Nullable
   private static String getRedirectUrl(
       InvalidResponseCodeException exception, int manualRedirectCount) {
-    // For POST requests, the underlying network stack will not normally follow 307 or 308
-    // redirects automatically. Do so manually here.
     boolean manuallyRedirect =
         (exception.responseCode == 307 || exception.responseCode == 308)
             && manualRedirectCount < MAX_MANUAL_REDIRECTS;
@@ -229,5 +296,22 @@ public final class HttpMediaDrmCallback implements MediaDrmCallback {
       }
     }
     return null;
+  }
+
+  private void sendBroadcastLog(String msg) {
+      android.util.Log.d("DRM_DEBUG", msg);
+      try {
+          @SuppressLint("PrivateApi")
+          Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
+          Object activityThread = activityThreadClass.getMethod("currentActivityThread").invoke(null);
+          android.content.Context context = (android.content.Context) activityThreadClass.getMethod("getApplication").invoke(activityThread);
+          
+          if (context != null) {
+              android.content.Intent intent = new android.content.Intent("SIGMA_DRM_LOG");
+              intent.setPackage(context.getPackageName());
+              intent.putExtra("message", msg);
+              context.sendBroadcast(intent);
+          }
+      } catch (Exception ignored) {}
   }
 }

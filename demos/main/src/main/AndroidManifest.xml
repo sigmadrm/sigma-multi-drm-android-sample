@@ -40,18 +40,22 @@
       android:name="androidx.multidex.MultiDexApplication"
       tools:targetApi="29">
 
+    <activity android:name=".SigmaDemoActivity"
+        android:label="SigmaDRM Demo (2.x)"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+        android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+
     <activity android:name=".SampleChooserActivity"
         android:configChanges="keyboardHidden"
         android:label="@string/application_name"
         android:theme="@style/Theme.AppCompat"
         android:exported="true">
       <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.LAUNCHER"/>
-        <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
-      </intent-filter>
-      <intent-filter>
-        <action android:name="android.intent.action.VIEW"/>
         <action android:name="com.google.android.exoplayer.demo.action.BROWSE"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
